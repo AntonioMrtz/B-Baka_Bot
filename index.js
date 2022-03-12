@@ -44,7 +44,6 @@ client.on("messageCreate",msg => {
         
         let flagTwoWordsChamp=0;
 
-        //TODO fotos del champ sacada de google?¿
         let command = msg.content.split(" ");
         
         let url = "https://euw.op.gg/champions/";
@@ -53,6 +52,8 @@ client.on("messageCreate",msg => {
        
         let champion;
         let role;
+
+        let champion_upperCaseFirst="";
         
         if(command.length==4){ // 2 word champs
 
@@ -68,7 +69,8 @@ client.on("messageCreate",msg => {
             
         }
         
-        
+        champion=champion.trim();
+        role=role.trim();
         
         
         
@@ -89,16 +91,32 @@ client.on("messageCreate",msg => {
             if(flagTwoWordsChamp==0){
                 
                 champion_upperCaseFirst= champion[0].toUpperCase() + champion.slice(1);
-                msg.reply({files: [{ attachment: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+champion_upperCaseFirst+"_0.jpg" }] });
+                console.log(champion_upperCaseFirst);
+                //msg.reply({files: [{ attachment: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+champion_upperCaseFirst+"_0.jpg" }] });
+
 
             }
             else{
 
                 champion_upperCaseFirst=command[1][0].toUpperCase() + command[1].slice(1)+command[2][0].toUpperCase()+command[2].slice(1);
-                msg.reply({files: [{ attachment: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+champion_upperCaseFirst+"_0.jpg" }] });
+                console.log(champion_upperCaseFirst);
+                //msg.reply({files: [{ attachment: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+champion_upperCaseFirst+"_0.jpg" }] });
+                
+                
             }
-            msg.reply(url);
-           
+            
+            let runesEmbeded = new Discord.MessageEmbed()
+            .setTitle("Runas "+champion_upperCaseFirst+" en "+role)
+            .setColor('FUCHSIA')
+            .setThumbnail("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+champion_upperCaseFirst+"_0.jpg")
+            .addField("\u200B",url )
+            .addField("\u200B","\u200B" )
+            .setFooter({ text: 'Op.GG', iconURL: 'https://i.imgur.com/AfFp7pu.png' })
+            .setTimestamp()
+            .setURL(url)
+    
+    
+            msg.reply({ embeds : [runesEmbeded] });
         }
         else{
 
@@ -118,8 +136,11 @@ client.on("messageCreate",msg => {
     else if(msg.content=="!p"){ //!PRUEBAS
 
         //TODO mensaje bienvenida y adios
-        //TODO mensajes embebidos
-       
+        //TODO mensajes embebidos HELP Y OPGG
+        
+        //TODO gif hotaru subir git y usar
+
+        
 
     }
     else if(msg.content=="!rampas"){
