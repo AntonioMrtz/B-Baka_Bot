@@ -148,7 +148,6 @@ client.on("messageCreate",msg => {
 
     else if(msg.content=="!p"){ //!PRUEBAS
 
-        //TODO mensaje bienvenida y adios
         
         //TODO gif hotaru subir git y usar
 
