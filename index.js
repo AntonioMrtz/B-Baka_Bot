@@ -108,7 +108,7 @@ client.on("messageCreate",msg => {
     }
     else if(msg.content=="!help"){
 
-        let help_commands = "```!opgg champion_name role\n!bloodtrail```"; 
+        let help_commands = "```* COMMDANDS * :\n\n!opgg [champion_name] [role] 👺\n!bloodtrail 👍\n!rampas 🥵\n!bye 👋\n ```"; 
         msg.reply(help_commands);
         
     }
@@ -116,6 +116,17 @@ client.on("messageCreate",msg => {
     else if(msg.content=="!p"){ //!PRUEBAS
 
 
+       
+
+    }
+    else if(msg.content=="!rampas"){
+
+        msg.reply("https://www.youtube.com/watch?v=qbEfxaIxzQg");
+    }
+
+    else if(msg.content=="!bye"){ //!PRUEBAS
+
+        process.exit();
        
 
     }
