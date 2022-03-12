@@ -19,6 +19,7 @@
   "homepage": "https://github.com/AntonioMrtz/Baka_Bot#readme",
   "dependencies": {
     "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3"
   }
 }
