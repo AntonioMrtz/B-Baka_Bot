@@ -35,7 +35,7 @@ client.on("messageCreate",msg => {
     if(msg.content=="!bloodtrail"){
         
         
-        msg.reply({files: [{ attachment: "bloodtrail.png" }] });
+        msg.reply({files: [{ attachment: "img/bloodtrail.png" }] });
         
     }
     
@@ -111,7 +111,7 @@ client.on("messageCreate",msg => {
             .setThumbnail("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+champion_upperCaseFirst+"_0.jpg")
             .addField("\u200B",url )
             .addField("\u200B","\u200B" )
-            .setFooter({ text: 'Op.GG', iconURL: 'https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/opgg_logo.png' })
+            .setFooter({ text: 'Op.GG', iconURL: 'https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/opgg_logo.png' })
             .setTimestamp()
             .setURL(url)
     
@@ -135,7 +135,7 @@ client.on("messageCreate",msg => {
             .setTitle(" *COMMANDS *")
             .setColor('GREEN')
             .addField("\u200B","\u200B")
-            .setThumbnail("https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/help_logo.png")
+            .setThumbnail("https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/help_logo.png")
             .addField("!opgg [champion_name] [role] ","\u200B")
             .addField("!bloodtrail ","\u200B")
             .addField("!rampas ","\u200B")
