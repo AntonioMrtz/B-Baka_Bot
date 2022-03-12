@@ -128,15 +128,27 @@ client.on("messageCreate",msg => {
     }
     else if(msg.content=="!help"){
 
-        let help_commands = "```* COMMDANDS * :\n\n!opgg [champion_name] [role] 👺\n!bloodtrail 👍\n!rampas 🥵\n!bye 👋\n ```"; 
-        msg.reply(help_commands);
+        let help_commands = " :!opgg [champion_name] [role] 👺\n!bloodtrail 👍\n!rampas 🥵\n!bye 👋\n ```"; 
+        
+        
+        let helpEmbeded = new Discord.MessageEmbed()
+            .setTitle(" *COMMANDS *")
+            .setColor('GREEN')
+            .addField("\u200B","\u200B")
+            .setThumbnail("https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/help_logo.png")
+            .addField("!opgg [champion_name] [role] ","\u200B")
+            .addField("!bloodtrail ","\u200B")
+            .addField("!rampas ","\u200B")
+            .addField("!bye ","\u200B")
+    
+    
+            msg.reply({ embeds : [helpEmbeded] });
         
     }
 
     else if(msg.content=="!p"){ //!PRUEBAS
 
         //TODO mensaje bienvenida y adios
-        //TODO mensajes embebidos HELP Y OPGG
         
         //TODO gif hotaru subir git y usar
 
