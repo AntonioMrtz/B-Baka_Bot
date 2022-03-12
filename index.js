@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 require('dotenv').config();
 
-const mySecret = process.env['TOKEN'];
+//const mySecret = process.env['TOKEN'];
 
 const client = new Discord.Client({
 
@@ -33,8 +33,4 @@ client.on("messageCreate",msg => {
 })
 
 
-
-//console.log(mySecret)
-client.login(mySecret)
-//client.login(process.env.TOKEN)
-//client.login("ODg4NDEzNDI2OTc0NjAxMjE3.YUSVeg.L93LRPFL6xDKmG7iDcMH8A5EJ7A")
+client.login(process.env['TOKEN'])
