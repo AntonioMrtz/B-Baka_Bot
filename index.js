@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const keepAlive = require('./server');
+
 require('dotenv').config();
 
 //const mySecret = process.env['TOKEN'];
@@ -33,5 +33,5 @@ client.on("messageCreate",msg => {
 
 })
 
-keepAlive();
+
 client.login(process.env['TOKEN'])
