@@ -17,10 +17,12 @@ const client = new Discord.Client({
     
 });
 
+
+
 client.on("ready", () => {
     
-    
-    console.log("hola");
+    client.user.setActivity('!help', { type: 'COMPETING' });
+    console.log("B-Baka Bot started! :)");
     
 })
 
@@ -115,7 +117,8 @@ client.on("messageCreate",msg => {
 
     else if(msg.content=="!p"){ //!PRUEBAS
 
-
+        //TODO mensaje bienvenida y adios
+        //TODO mensajes embebidos
        
 
     }
@@ -124,8 +127,10 @@ client.on("messageCreate",msg => {
         msg.reply("https://www.youtube.com/watch?v=qbEfxaIxzQg");
     }
 
-    else if(msg.content=="!bye"){ //!PRUEBAS
+    else if(msg.content=="!bye"){ 
 
+        msg.reply("Bye Bye 👋👋")
+        console.log("B-Baka Bot stopped! :(");
         process.exit();
        
 
@@ -141,3 +146,4 @@ client.on("messageCreate",msg => {
 var lol_champions = fs.readFileSync("./lol_champs.txt").toString('utf-8').toLowerCase();
 var lol_roles = fs.readFileSync("./lol_roles.txt").toString('utf-8').toLowerCase();
 client.login(process.env['TOKEN'])
+
