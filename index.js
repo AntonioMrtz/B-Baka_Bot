@@ -34,8 +34,7 @@ client.on("messageCreate",msg => {
     
     if(msg.content=="!bloodtrail"){
         
-        
-        msg.reply({files: [{ attachment: "img/bloodtrail.png" }] });
+        msg.reply({files: [{ attachment: "https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/bloodtrail.png" }] });
         
     }
     
@@ -123,8 +122,6 @@ client.on("messageCreate",msg => {
             msg.reply("```Champion or Role not found```")
         }
         
-        
-        
     }
     else if(msg.content=="!help"){
 
@@ -133,13 +130,13 @@ client.on("messageCreate",msg => {
         
         let helpEmbeded = new Discord.MessageEmbed()
             .setTitle(" *COMMANDS *")
+            .setThumbnail("https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/help_logo.png")
             .setColor('GREEN')
             .addField("\u200B","\u200B")
-            .setThumbnail("https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/help_logo.png")
             .addField("!opgg [champion_name] [role] ","\u200B")
             .addField("!bloodtrail ","\u200B")
             .addField("!rampas ","\u200B")
-            .addField("!bye ","\u200B")
+            .addField("!bye ","\u200B");
     
     
             msg.reply({ embeds : [helpEmbeded] });
