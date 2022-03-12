@@ -111,7 +111,7 @@ client.on("messageCreate",msg => {
             .setThumbnail("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+champion_upperCaseFirst+"_0.jpg")
             .addField("\u200B",url )
             .addField("\u200B","\u200B" )
-            .setFooter({ text: 'Op.GG', iconURL: 'https://i.imgur.com/AfFp7pu.png' })
+            .setFooter({ text: 'Op.GG', iconURL: 'https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/opgg_logo.png' })
             .setTimestamp()
             .setURL(url)
     
