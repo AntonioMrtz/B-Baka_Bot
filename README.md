@@ -1,4 +1,4 @@
-# B-Baka_Bot
+# B-Baka Bot
 B-Baka Bot for Discord is a Multi-Purpose Bot designed in JavaScript
 
 <img src=https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/hotaru_gif.gif width=200px>
