@@ -20,4 +20,4 @@ B-Baka Bot for Discord is a Multi-Purpose Bot designed in JavaScript
 
 ## UPCOMING FEATURES 🖊
 
-!play | It allows you to play your favourite music
+!play -> It allows you to play your favourite music
