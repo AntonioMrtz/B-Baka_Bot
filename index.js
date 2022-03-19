@@ -148,6 +148,7 @@ client.on("messageCreate",msg => {
             .setColor('GREEN')
             .addField("\u200B","\u200B")
             .addField("!opgg [champion_name] [role] ","\u200B")
+            .addField("!coinflip ","\u200B")
             .addField("!bloodtrail ","\u200B")
             .addField("!rampas ","\u200B")
             .addField("!bye ","\u200B");
@@ -156,12 +157,38 @@ client.on("messageCreate",msg => {
             msg.reply({ embeds : [helpEmbeded] });
         
     }
+    else if(msg.content=="!coinflip"){
 
+        //https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/t_logo.png
+
+       let coinflip;
+
+        if( Math.random() > 0.49){
+
+            coinflip = new Discord.MessageEmbed()
+                .setTitle("Coinflip -> CARA")
+                .setColor('AQUA')
+                .setImage("https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/ct_logo.png")
+                .addField("\u200B","\u200B" )
+        }
+
+        else{
+
+            coinflip = new Discord.MessageEmbed()
+                .setTitle("Coinflip -> CRUZ")
+                .setColor('RED')
+                .setImage("https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/t_logo.png")
+                .addField("\u200B","\u200B" )
+
+
+        }
+
+        msg.reply({ embeds : [coinflip] });
+
+    }
     else if(msg.content=="!p"){ //!PRUEBAS
 
         
-        //TODO Coinflip
-        //TODO Kaisa , kazhix
 
         
 
@@ -187,7 +214,7 @@ client.on("messageCreate",msg => {
 
 
 
-var lol_champions = fs.readFileSync("./lol_champs.txt").toString('utf-8').toLowerCase();
-var lol_roles = fs.readFileSync("./lol_roles.txt").toString('utf-8').toLowerCase();
+var lol_champions = fs.readFileSync("./data/lol_champs.txt").toString('utf-8').toLowerCase();
+var lol_roles = fs.readFileSync("./data/lol_roles.txt").toString('utf-8').toLowerCase();
 client.login(process.env['TOKEN'])
 
