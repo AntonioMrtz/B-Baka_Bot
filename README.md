@@ -9,6 +9,8 @@ B-Baka Bot for Discord is a Multi-Purpose Bot designed in JavaScript
 ```
 !opgg [champion_name] [role]
 
+!coinflip
+
 !help
 
 !bloodtrail
