@@ -1,25 +1,54 @@
 {
+
   "name": "b-baka_bot",
+
   "version": "1.0.0",
+
   "description": "Baka Bot for Discord is a Multi purpose Bot designed in Js",
+
   "main": "index.js",
+
   "scripts": {
+
     "test": "echo \"Error: no test specified\" && exit 1"
+
   },
+
   "repository": {
+
     "type": "git",
+
     "url": "git+https://github.com/AntonioMrtz/Baka_Bot.git"
+
   },
+
   "keywords": [],
+
   "author": "",
+
   "license": "ISC",
+
   "bugs": {
+
     "url": "https://github.com/AntonioMrtz/Baka_Bot/issues"
+
   },
+
   "homepage": "https://github.com/AntonioMrtz/Baka_Bot#readme",
+
   "dependencies": {
+
+    "axios": "^0.26.1",
+
     "discord.js": "^13.6.0",
+
     "dotenv": "^16.0.0",
-    "express": "^4.17.3"
+
+    "express": "^4.17.3",
+
+    "node-fetch": "^2.6.1"
+
   }
+
 }
+

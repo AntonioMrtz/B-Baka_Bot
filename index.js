@@ -1,9 +1,34 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 
-const opgg = require('./node_modules/opgg/index.js')
+const opgg = require('./modules/opgg/index.js')
+
+//const fetch = require('node-fetch');
+
+const axios = require('axios');
+//import fetch from "node-fetch";
 
 require('dotenv').config();
+
+
+async function fetchResponse(msg){
+
+    let url = 'https://api.urbandictionary.com/v0/define?term=stonks';
+    //let url="https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=USD"
+
+    axios.get(url)
+    .then((res) => {
+
+        console.log(res.data.list)
+        msg.reply(JSON.stringify(res.data.list[0]))
+
+    })
+  
+    
+    //TODO ordenar respuestas por valoracion
+    
+}
+
 
 
 const client = new Discord.Client({
@@ -92,8 +117,34 @@ client.on("messageCreate",msg => {
     }
     else if(msg.content=="!p"){ //!PRUEBAS
 
-        
-        
+        //let url = 'https://api.urbandictionary.com/v0/define?term=take%20it%20easy';
+        //let url = 'https://api.urbandictionary.com/v0/define?term=a';
+
+        //let response;
+
+        /*
+        fetch(url).then(r=> r.json())
+            .then(j=>response=j)
+            .then(j=> prueba = new Discord.MessageEmbed()
+                .setTitle("prueba")
+                .setColor('RED')
+                .addField("\u200B",j)),
+
+                msg.reply({ embeds: [j] })
+            
+        */
+
+        fetchResponse(msg);
+
+
+
+
+        //console.log(response);
+        /*
+        (async()=> 
+        console.log('\nREQUEST 3', await(await fetch(url)).json()) 
+        )();*/
+
 
     }
     else if(msg.content=="!rampas"){
