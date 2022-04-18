@@ -74,9 +74,7 @@ module.exports = {
                 
                 
                     msg.reply({ embeds : [urbanDictionaryEmbeded] });
-            
-                    //msg.reply(JSON.stringify(res.data.list[index_max_upvotes]))
-                    
+                                
                 }
                 else{
         
