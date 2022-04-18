@@ -155,10 +155,13 @@ client.on("messageCreate",msg => {
             .setColor('GREEN')
             .addField("\u200B","\u200B")
             .addField("!opgg [champion_name] [role] ","\u200B")
+            .addField("!definition [word or phrase] ","\u200B")
             .addField("!coinflip ","\u200B")
             .addField("!bloodtrail ","\u200B")
             .addField("!rampas ","\u200B")
-            .addField("!bye ","\u200B");
+            .addField("!bye ","\u200B")
+            .addField("\u200B","\u200B")
+            .setFooter({ text: 'B-Baka Bot by Ye4h', iconURL: "https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/baka_bot_profile_img.jpg" })
     
     
             msg.reply({ embeds : [helpEmbeded] });
