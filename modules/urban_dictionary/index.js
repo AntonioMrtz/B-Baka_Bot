@@ -67,7 +67,7 @@ module.exports = {
                         .addField("\u200B","Example/s: ")
                         .addField("\u200B",example)
                         .addField("\u200B","\u200B")
-                        .setFooter({ text: 'Urban Dictionary Api', iconURL: "https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/ud_logo.png" })
+                        .setFooter({ text: 'Urban Dictionary API', iconURL: "https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/ud_logo.png" })
                         .setTimestamp()
                         .setURL(url)
             
@@ -82,7 +82,7 @@ module.exports = {
                     .setTitle("*Definition not found*")
                     .setThumbnail("https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/ud_logo.png")
                     .setColor('DARK_RED')
-                    .setFooter({ text: 'Urban Dictionary Api', iconURL: "https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/ud_logo.png" })
+                    .setFooter({ text: 'Urban Dictionary API', iconURL: "https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/ud_logo.png" })
                     .setTimestamp()
         
             

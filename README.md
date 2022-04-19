@@ -11,6 +11,8 @@ B-Baka Bot for Discord is a Multi-Purpose Bot designed in JavaScript
 
 !definition [word or phrase]
 
+!wordoftheday
+
 !coinflip
 
 !help

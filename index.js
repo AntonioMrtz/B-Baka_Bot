@@ -56,6 +56,7 @@ client.on("messageCreate",msg => {
             .addField("\u200B","\u200B")
             .addField("!opgg [champion_name] [role] ","\u200B")
             .addField("!definition [word or phrase] ","\u200B")
+            .addField("!wordoftheday ","\u200B")
             .addField("!coinflip ","\u200B")
             .addField("!bloodtrail ","\u200B")
             .addField("!rampas ","\u200B")
@@ -98,9 +99,6 @@ client.on("messageCreate",msg => {
     }
     else if(msg.content=="!p"){ //!TEST ONLY
 
-
-
-
     }
     else if(msg.content.startsWith("!definition")){
 
@@ -108,9 +106,27 @@ client.on("messageCreate",msg => {
         command = command.slice(1);
         command = command.join().trim().replaceAll(","," ");
 
-        //fetchResponse(msg,command)
-
         urban_dictionary.fetchResponse(msg,command)
+
+    }
+    else if(msg.content=="!wordoftheday"){
+
+        axios.get("https://www.urbandictionary.com/")
+        .then( (res) =>{
+
+            let re_wordoftoday_title = new RegExp(/<title>.*<\/title>/);
+
+            let result_re = re_wordoftoday_title.exec(res.data)[0]
+
+            word = result_re.split(":")[1];
+            word = word.trim();
+            word = word.replace("</title>","");
+
+
+            urban_dictionary.fetchResponse(msg,word);
+
+        } )
+
 
     }
     else if(msg.content=="!rampas"){
