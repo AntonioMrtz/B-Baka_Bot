@@ -20,7 +20,13 @@ module.exports = {
 
         let champion_upperCaseFirst = "";
 
-        if (command.length == 4) { // 2 word champs
+        if(command.length==2){
+
+            msg.reply("```Champion or Role not found```")
+            return;
+        }
+
+        else if (command.length == 4) { // 2 word champs
 
             flagTwoWordsChamp = 1;
             champion = command[1].toLocaleLowerCase() + command[2].toLocaleLowerCase();
