@@ -88,7 +88,7 @@ module.exports = {
             }
 
             //console.log("Runas " + champion_upperCaseFirst + " en " + role);
-
+            
             let runesEmbeded = new Discord.MessageEmbed()
                 .setTitle("Runas " + champion_upperCaseFirst + " en " + role)
                 .setColor('FUCHSIA')

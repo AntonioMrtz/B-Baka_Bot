@@ -163,7 +163,7 @@ client.on("messageCreate",msg => {
 
         Runa sin usar vs usada ( greyscaled)
 
-        */
+        
         axios.get("https://euw.op.gg/summoners/euw/Yeah Geims")
             .then( (res)=>{
 
@@ -171,7 +171,7 @@ client.on("messageCreate",msg => {
                     if(err) console.log('error', err);
                   })
 
-            })
+            })*/
 
     }
     else if(msg.content.startsWith("!definition")){
