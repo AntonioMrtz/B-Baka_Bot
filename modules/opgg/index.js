@@ -13,16 +13,15 @@ module.exports = {
 
         let url = "https://euw.op.gg/champions/";
 
-
-
+        
         let champion;
         let role;
-
+        
         let champion_upperCaseFirst = "";
-
+        
         if(command.length==2){
-
-            msg.reply("```Champion or Role not found```")
+            
+            msg.reply("```Champion or Role not found```");
             return;
         }
 
@@ -88,7 +87,7 @@ module.exports = {
 
             }
 
-            console.log("Runas " + champion_upperCaseFirst + " en " + role);
+            //console.log("Runas " + champion_upperCaseFirst + " en " + role);
 
             let runesEmbeded = new Discord.MessageEmbed()
                 .setTitle("Runas " + champion_upperCaseFirst + " en " + role)

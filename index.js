@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const fs = require('fs');
+const fs = require('fs');//! QUITAR DSP PRUEBAS
 
 const opgg = require('./modules/opgg/index.js')
 const urban_dictionary = require('./modules/urban_dictionary/index.js')
@@ -42,10 +42,62 @@ client.on("messageCreate",msg => {
         
     }
     
+    else if(msg.content.startsWith("!runes")){
+        
+        opgg.queryOpgg(msg,lol_champions,lol_roles);
+
+    }
     else if(msg.content.startsWith("!opgg")){
         
-       
-        opgg.queryOpgg(msg,lol_champions,lol_roles);
+        let command = msg.content.split(" ");
+        let url_profile = "https://euw.op.gg/summoners/euw/";
+
+        if(command.length==1){
+
+            msg.reply("Invalid name");
+        }
+
+        for(let i=1;i<command.length;i++){
+
+            url_profile+=command[i];
+        }
+
+        // </div><img src="https://opgg-static.akamaized.net/images/profile_icons/profileIcon4884.jpg?image=q_auto&amp;image=q_auto,f_png,w_auto&amp;v=1650634188962" alt="profile image"
+
+        axios.get(url_profile)
+            .then( (res)=>{
+
+                
+                let profile_img;
+
+                let re_profile_image = new RegExp(/<\/div><img src=.*alt="profile image/);
+        
+                let result_re = re_profile_image.exec(res.data)[0];
+
+                profile_img=result_re.split("alt")[0];
+                                
+                let re_profile_image_link = new RegExp(/".*"/);
+                profile_img = re_profile_image_link.exec(profile_img)[0];
+                profile_img=profile_img.replaceAll("\"","");
+                
+                
+                let profileEmbeded = new Discord.MessageEmbed()
+                    .setTitle("Perfil de "+command[1])
+                    .setColor('DARK_AQUA')
+                    .setThumbnail(profile_img)
+                    .setFooter({ text: 'Op.GG', iconURL: 'https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/opgg_logo.png' })
+                    .setTimestamp()
+                    .setURL(url_profile)
+        
+        
+                msg.reply({ embeds: [profileEmbeded] });
+
+            })
+
+
+
+
+
     }
     else if(msg.content=="!help"){
         
@@ -54,7 +106,8 @@ client.on("messageCreate",msg => {
             .setThumbnail("https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/help_logo.png")
             .setColor('GREEN')
             .addField("\u200B","\u200B")
-            .addField("!opgg [champion_name] [role] ","\u200B")
+            .addField("!opgg [Summoner Name] ","\u200B")
+            .addField("!runes [champion_name] [role] ","\u200B")
             .addField("!definition [word or phrase] ","\u200B")
             .addField("!wordoftheday ","\u200B")
             .addField("!coinflip ","\u200B")
@@ -98,6 +151,27 @@ client.on("messageCreate",msg => {
 
     }
     else if(msg.content=="!p"){ //!TEST ONLY
+
+        //? <div result= -> ahi empieza cada partida
+
+        //? a partir de <title> vienen los datos de invocador
+
+        /*
+        https://opgg-static.akamaized.net/images/lol/perk/8017.png?image=q_auto,f_png,w_128,e_grayscale&amp;v=1650333355470
+
+        https://opgg-static.akamaized.net/images/lol/perk/8299.png?image=q_auto,f_png,w_128&amp;v=1650333355470
+
+        Runa sin usar vs usada ( greyscaled)
+
+        */
+        axios.get("https://euw.op.gg/summoners/euw/Yeah Geims")
+            .then( (res)=>{
+
+                fs.writeFile("output.txt",res.data,function(err, result) {
+                    if(err) console.log('error', err);
+                  })
+
+            })
 
     }
     else if(msg.content.startsWith("!definition")){
