@@ -167,9 +167,12 @@ client.on("messageCreate",msg => {
         axios.get("https://euw.op.gg/summoners/euw/Yeah Geims")
             .then( (res)=>{
 
+                fs.truncate("output.txt",0,function(err, result) {
+                    if(err) console.log('error', err);
+                })
                 fs.writeFile("output.txt",res.data,function(err, result) {
                     if(err) console.log('error', err);
-                  })
+                })
 
             })
 
