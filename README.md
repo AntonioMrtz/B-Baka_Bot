@@ -9,9 +9,9 @@ B-Baka Bot for Discord is a Multi-Purpose Bot designed in JavaScript
 ```
 !runes [champion_name] [role]
 
-!opgg [Summoner name]
+!opgg [summoner_name]
 
-!definition [word or phrase]
+!definition [word_or_phrase]
 
 !wordoftheday
 
