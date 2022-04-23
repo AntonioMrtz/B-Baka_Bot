@@ -62,37 +62,7 @@ client.on("messageCreate",msg => {
             url_profile+=command[i];
         }
 
-        // </div><img src="https://opgg-static.akamaized.net/images/profile_icons/profileIcon4884.jpg?image=q_auto&amp;image=q_auto,f_png,w_auto&amp;v=1650634188962" alt="profile image"
-
-        axios.get(url_profile)
-            .then( (res)=>{
-
-                
-                let profile_img;
-
-                let re_profile_image = new RegExp(/<\/div><img src=.*alt="profile image/);
-        
-                let result_re = re_profile_image.exec(res.data)[0];
-
-                profile_img=result_re.split("alt")[0];
-                                
-                let re_profile_image_link = new RegExp(/".*"/);
-                profile_img = re_profile_image_link.exec(profile_img)[0];
-                profile_img=profile_img.replaceAll("\"","");
-                
-                
-                let profileEmbeded = new Discord.MessageEmbed()
-                    .setTitle("Perfil de "+command[1])
-                    .setColor('DARK_AQUA')
-                    .setThumbnail(profile_img)
-                    .setFooter({ text: 'Op.GG', iconURL: 'https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/opgg_logo.png' })
-                    .setTimestamp()
-                    .setURL(url_profile)
-        
-        
-                msg.reply({ embeds: [profileEmbeded] });
-
-            })
+       opgg.querySummonerName(msg,url_profile,command)
 
 
 
@@ -164,8 +134,10 @@ client.on("messageCreate",msg => {
         Runa sin usar vs usada ( greyscaled)
 
         */
-        axios.get("https://euw.op.gg/summoners/euw/Yeah Geims")
+        axios.get("https://euw.op.gg/summoners/euw/kilaweagelpro")
             .then( (res)=>{
+
+                //console.log(res);
 
                 fs.truncate("output.txt",0,function(err, result) {
                     if(err) console.log('error', err);

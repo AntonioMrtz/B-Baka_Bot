@@ -4,7 +4,7 @@ const axios = require('axios');
 
 module.exports = {
 
-    fetchResponse: async function (msg,word) {
+    fetchResponse: function (msg,word) {
         
 
 
