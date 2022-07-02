@@ -110,17 +110,19 @@ module.exports = {
     },
 
     querySummonerName: function(msg,url_profile,command){
+         
+        // antes
+        // </div><img src="https://opgg-static.akamaized.net/images/profile_icons/profileIcon4884.jpg?image=q_auto&amp;image=q_auto,f_png,w_auto&amp;v=1650634188962" alt="profile image"
 
-
-         // </div><img src="https://opgg-static.akamaized.net/images/profile_icons/profileIcon4884.jpg?image=q_auto&amp;image=q_auto,f_png,w_auto&amp;v=1650634188962" alt="profile image"
-
+        //ahora
+        //<div class="profile-icon"><img src="https://opgg-static.akamaized.net/images/profile_icons/profileIcon743.jpg?image=q_auto&amp;image=q_auto,f_webp,w_auto&amp;v=1656664295380" alt="profile image"><div><span class="level">284</span></div></div>
          axios.get(url_profile)
          .then( (res)=>{
 
              
             let profile_img;
 
-            let re_profile_image = new RegExp(/<\/div><img src=.*alt="profile image/); //TODO devolver
+            let re_profile_image = new RegExp(/<div class="profile-icon.*alt="profile image"/); //TODO devolver
 
 
 
@@ -141,11 +143,13 @@ module.exports = {
                 msg.reply({ embeds: [profileEmbeded] });
                 return;
             }
+
             result_re=result_re[0];
             profile_img=result_re.split("alt")[0];
                              
-            let re_profile_image_link = new RegExp(/".*"/);
+            let re_profile_image_link = new RegExp(/src=".*"/);
             profile_img = re_profile_image_link.exec(profile_img)[0];
+            profile_img=profile_img.replaceAll("src=","")
             profile_img=profile_img.replaceAll("\"","");
              
              
