@@ -1,1 +1,1 @@
-supp,adc,mid,top,support,jgl,jungle,
+supp,adc,mid,top,support,jgl,jungle,jg

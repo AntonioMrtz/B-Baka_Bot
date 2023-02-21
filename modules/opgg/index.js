@@ -50,43 +50,51 @@ module.exports = {
         role = role.trim();
 
 
+        if (champion.search("'") != -1) {
+            champion = champion.replace("'", "");
+        }
 
-        if (lol_champions.includes(champion) && lol_roles.includes(role)) {  // check if the rol and champion exists
+        if (voidChamp == 1) {
+
+            champion_upperCaseFirst = champion[0].toUpperCase() + champion.slice(1);
+            champion_upperCaseFirst = champion_upperCaseFirst.replace("'", "");
+        }
+        else if (flagTwoWordsChamp == 0) {
+
+            champion_upperCaseFirst = champion[0].toUpperCase() + champion.slice(1);
+
+
+
+        }
+        else {
+
+            champion_upperCaseFirst = command[1][0].toUpperCase() + command[1].slice(1) + command[2][0].toUpperCase() + command[2].slice(1);
+
+
+        }
+
+        /* console.log(champion_upperCaseFirst)
+
+        console.log(lol_champions) */
+
+
+
+        if (lol_roles.roles.includes(role) && lol_champions.data.includes(champion_upperCaseFirst)) {  // check if the rol and champion exists
 
             if (role == "supp") {
 
                 role = "support";
             }
-            if (role == "jg" || role == "jgl") {
+            else if (role == "jg" || role == "jgl") {
 
                 role = "jungle";
             }
 
-            if (champion.search("'") != -1) {
-                champion = champion.replace("'", "");
-            }
+        
 
             url += champion + "/" + role + "/" + "build";
 
 
-            if (voidChamp == 1) {
-
-                champion_upperCaseFirst = champion[0].toUpperCase() + champion.slice(1);
-                champion_upperCaseFirst = champion_upperCaseFirst.replace("'", "");
-            }
-            else if (flagTwoWordsChamp == 0) {
-
-                champion_upperCaseFirst = champion[0].toUpperCase() + champion.slice(1);
-
-
-
-            }
-            else {
-
-                champion_upperCaseFirst = command[1][0].toUpperCase() + command[1].slice(1) + command[2][0].toUpperCase() + command[2].slice(1);
-
-
-            }
 
             //console.log("Runas " + champion_upperCaseFirst + " en " + role);
             

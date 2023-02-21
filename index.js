@@ -1,12 +1,37 @@
 const Discord = require('discord.js');
 const fs = require('fs');//! QUITAR DSP PRUEBAS
+const { MongoClient } = require("mongodb");
+
 
 const opgg = require('./modules/opgg/index.js')
 const urban_dictionary = require('./modules/urban_dictionary/index.js')
 
+
 const axios = require('axios');
 
+
+// cambiar parche 13.3.1 a otro parche en caso de que se añadan nuevos campeones
+//var lol_champions=axios.get("http://ddragon.leagueoflegends.com/cdn/13.3.1/data/en_US/champion.json");
+
+
+var lol_champions = (async () => {
+
+    const data = await (axios.get("http://ddragon.leagueoflegends.com/cdn/13.3.1/data/en_US/champion.json").then(d => d.data));
+    return data
+
+})()
+
+var lol_roles=require("./data/roles.json");
+
+
+
 require('dotenv').config();
+
+
+const clientDB = new MongoClient(process.env['CLUSTER']);
+const database = clientDB.db('B-BakaBot');
+
+var lol_roles;
 
 
 const client = new Discord.Client({
@@ -27,6 +52,7 @@ client.on("ready", () => {
     
     client.user.setActivity('!help', { type: 'COMPETING' });
     console.log("B-Baka Bot started! :)");
+   
     
 })
 
@@ -44,6 +70,8 @@ client.on("messageCreate",msg => {
     
     else if(msg.content.startsWith("!runes")){
         
+        console.log(lol_champions[0].status)
+        console.log(lol_roles)
         opgg.queryOpgg(msg,lol_champions,lol_roles);
 
     }
@@ -178,10 +206,6 @@ client.on("messageCreate",msg => {
 
 
     }
-    else if(msg.content=="!rampas"){
-
-        msg.reply("https://www.youtube.com/watch?v=qbEfxaIxzQg");
-    }
 
     else if(msg.content=="!bye"){ 
 
@@ -197,9 +221,19 @@ client.on("messageCreate",msg => {
 })
 
 
+function run(){
+    
+    client.login(process.env['TOKEN'])
 
 
-var lol_champions = fs.readFileSync("./data/lol_champs.txt").toString('utf-8').toLowerCase();
-var lol_roles = fs.readFileSync("./data/lol_roles.txt").toString('utf-8').toLowerCase();
-client.login(process.env['TOKEN'])
+
+
+
+}
+
+run()
+
+
+
+
 
