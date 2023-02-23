@@ -8,15 +8,25 @@ const opgg = require('./modules/opgg/index.js')
 const urban_dictionary = require('./modules/urban_dictionary/index.js')
 
 
+ 
+require('dotenv').config();
+
+const clientDB = new MongoClient(process.env['CLUSTER']);
+const database = clientDB.db('B-BakaBot');
+
+
+var lol_roles=require("./data/roles.json");
+var lol_champions;
+var lol_roles;
+
+
 
 
 // cambiar parche 13.3.1 a otro parche en caso de que se añadan nuevos campeones
 //var lol_champions=axios.get("http://ddragon.leagueoflegends.com/cdn/13.3.1/data/en_US/champion.json");
 
-
 async function getChampions() {
-
-    const data = await (axios.get("http://ddragon.leagueoflegends.com/cdn/13.3.1/data/en_US/champion.json"));
+const data = await (axios.get("http://ddragon.leagueoflegends.com/cdn/13.3.1/data/en_US/champion.json"));
 
     
     fs.writeFileSync("./data/lol_champions.json", JSON.stringify(data.data.data), function(err) {
@@ -25,28 +35,10 @@ async function getChampions() {
         }
     });
 
-    lol_champions=require("./data/lol_champions_prueba.json");
+    lol_champions=require("./data/lol_champions.json");
     
-    //return data
 
 }
-
-
-var lol_roles=require("./data/roles.json");
-var lol_champions;
-
-
-
-
-require('dotenv').config();
-
-
-const clientDB = new MongoClient(process.env['CLUSTER']);
-const database = clientDB.db('B-BakaBot');
-
-var lol_roles;
-
-
 const client = new Discord.Client({
     
     intents: [
@@ -58,6 +50,12 @@ const client = new Discord.Client({
     
     
 });
+
+
+
+
+
+//?--------------
 
 
 
@@ -165,33 +163,13 @@ client.on("messageCreate",msg => {
         msg.reply({ embeds : [coinflip] });
 
     }
-    else if(msg.content=="!p"){ //!TEST ONLY
+    //! { TEST ONLY }
+    else if(msg.content=="!p"){ 
 
-        //? <div result= -> ahi empieza cada partida
+       
+    
 
-        //? a partir de <title> vienen los datos de invocador
 
-        /*
-        https://opgg-static.akamaized.net/images/lol/perk/8017.png?image=q_auto,f_png,w_128,e_grayscale&amp;v=1650333355470
-
-        https://opgg-static.akamaized.net/images/lol/perk/8299.png?image=q_auto,f_png,w_128&amp;v=1650333355470
-
-        Runa sin usar vs usada ( greyscaled)
-
-        */
-        axios.get("https://euw.op.gg/summoners/euw/kilaweagelpro")
-            .then( (res)=>{
-
-                //console.log(res);
-
-                fs.truncate("output.txt",0,function(err, result) {
-                    if(err) console.log('error', err);
-                })
-                fs.writeFile("output.txt",res.data,function(err, result) {
-                    if(err) console.log('error', err);
-                })
-
-            })
 
     }
     else if(msg.content.startsWith("!definition")){

@@ -90,22 +90,40 @@ module.exports = {
 
             url += champion + "/" + role + "/" + "build";
 
-
-
-            //console.log("Runas " + champion_upperCaseFirst + " en " + role);
             
-            let runesEmbeded = new Discord.MessageEmbed()
-                .setTitle("Runas " + champion_upperCaseFirst + " en " + role)
-                .setColor('FUCHSIA')
-                .setThumbnail("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + champion_upperCaseFirst + "_0.jpg")
-                .addField("\u200B", url)
-                .addField("\u200B", "\u200B")
-                .setFooter({ text: 'Op.GG', iconURL: 'https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/opgg_logo.png' })
-                .setTimestamp()
-                .setURL(url)
+
+            axios.get("https://ddragon.leagueoflegends.com/cdn/13.3.1/data/en_US/champion/"+champion_upperCaseFirst+".json")
+            .then(
+
+                d=> {
+
+                    let skins = d["data"]["data"][champion_upperCaseFirst]["skins"]
+
+                    
+                    let runesEmbeded = new Discord.MessageEmbed()
+                        .setTitle("Runas " + champion_upperCaseFirst + " en " + role)
+                        .setColor('FUCHSIA')
+                        .setThumbnail("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + champion_upperCaseFirst + "_" +  parseInt(Math.random() * (skins.length-1 - 0))+ ".jpg")
+                        .addField("\u200B", url)
+                        .addField("\u200B", "\u200B")
+                        .setFooter({ text: 'Op.GG', iconURL: 'https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/opgg_logo.png' })
+                        .setTimestamp()
+                        .setURL(url)
+        
+        
+                    msg.reply({ embeds: [runesEmbeded] });
 
 
-            msg.reply({ embeds: [runesEmbeded] });
+
+                }
+
+
+
+
+            )
+
+
+
         }
         else {
 
