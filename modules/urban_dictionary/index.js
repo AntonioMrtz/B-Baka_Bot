@@ -4,7 +4,7 @@ const axios = require('axios');
 
 module.exports = {
 
-    fetchResponse: function (msg) {
+    fetchResponse: async function (msg) {
 
 
 
@@ -25,9 +25,31 @@ module.exports = {
           ]
         }*/
 
-        let word = msg.content.split(" ");
-        word = word.slice(1);
-        word = word.join().trim().replaceAll(",", " ");
+        let word;
+
+
+        if(msg.content.split(" ")[0]==="!wordoftheday"){
+
+            let res = await (axios.get("https://www.urbandictionary.com/"))
+
+    
+                let re_wordoftoday_title = new RegExp(/<title>.*<\/title>/);
+    
+                let result_re = re_wordoftoday_title.exec(res.data)[0]
+    
+                word = result_re.split(":")[1];
+                word = word.trim();
+                word = word.replace("</title>","");
+          
+        }
+
+        else{
+
+            word = msg.content.split(" ");
+            word = word.slice(1);
+            word = word.join().trim().replaceAll(",", " ");
+
+        }
 
 
 

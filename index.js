@@ -180,21 +180,11 @@ client.on("messageCreate",msg => {
     }
     else if(msg.content=="!wordoftheday"){
 
-        axios.get("https://www.urbandictionary.com/")
-        .then( (res) =>{
-
-            let re_wordoftoday_title = new RegExp(/<title>.*<\/title>/);
-
-            let result_re = re_wordoftoday_title.exec(res.data)[0]
-
-            word = result_re.split(":")[1];
-            word = word.trim();
-            word = word.replace("</title>","");
+    
 
 
-            urban_dictionary.fetchResponse(msg,word);
+        urban_dictionary.fetchResponse(msg);
 
-        } )
 
 
     }
