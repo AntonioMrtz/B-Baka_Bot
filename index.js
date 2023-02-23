@@ -1,27 +1,40 @@
 const Discord = require('discord.js');
-const fs = require('fs');//! QUITAR DSP PRUEBAS
+const fs = require('fs');
 const { MongoClient } = require("mongodb");
+const axios = require('axios');
 
 
 const opgg = require('./modules/opgg/index.js')
 const urban_dictionary = require('./modules/urban_dictionary/index.js')
 
 
-const axios = require('axios');
 
 
 // cambiar parche 13.3.1 a otro parche en caso de que se añadan nuevos campeones
 //var lol_champions=axios.get("http://ddragon.leagueoflegends.com/cdn/13.3.1/data/en_US/champion.json");
 
 
-var lol_champions = (async () => {
+async function getChampions() {
 
-    const data = await (axios.get("http://ddragon.leagueoflegends.com/cdn/13.3.1/data/en_US/champion.json").then(d => d.data));
-    return data
+    const data = await (axios.get("http://ddragon.leagueoflegends.com/cdn/13.3.1/data/en_US/champion.json"));
 
-})()
+    
+    fs.writeFileSync("./data/lol_champions.json", JSON.stringify(data.data.data), function(err) {
+        if (err) {
+            console.log(err);
+        }
+    });
+
+    lol_champions=require("./data/lol_champions_prueba.json");
+    
+    //return data
+
+}
+
 
 var lol_roles=require("./data/roles.json");
+var lol_champions;
+
 
 
 
@@ -70,8 +83,12 @@ client.on("messageCreate",msg => {
     
     else if(msg.content.startsWith("!runes")){
         
-        console.log(lol_champions[0].status)
-        console.log(lol_roles)
+    
+
+        //getChampions().then( d => opgg.queryOpgg(msg,d,lol_roles) )
+
+        //console.log(lol_champions)
+
         opgg.queryOpgg(msg,lol_champions,lol_roles);
 
     }
@@ -224,6 +241,7 @@ client.on("messageCreate",msg => {
 function run(){
     
     client.login(process.env['TOKEN'])
+    getChampions()
 
 
 

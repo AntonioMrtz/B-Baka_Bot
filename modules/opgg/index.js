@@ -10,7 +10,7 @@ module.exports = {
         let voidChamp = 0;
 
 
-        let command = msg.content.split(" ");
+        const command = msg.content.split(" ");
 
         let url = "https://euw.op.gg/champions/";
 
@@ -73,13 +73,9 @@ module.exports = {
 
         }
 
-        /* console.log(champion_upperCaseFirst)
-
-        console.log(lol_champions) */
 
 
-
-        if (lol_roles.roles.includes(role) && lol_champions.data.includes(champion_upperCaseFirst)) {  // check if the rol and champion exists
+        if (lol_roles["roles"].includes(role) && lol_champions[champion_upperCaseFirst]) {  // check if the rol and champion exists
 
             if (role == "supp") {
 
