@@ -174,11 +174,8 @@ client.on("messageCreate",msg => {
     }
     else if(msg.content.startsWith("!definition")){
 
-        let command = msg.content.split(" ");
-        command = command.slice(1);
-        command = command.join().trim().replaceAll(","," ");
-
-        urban_dictionary.fetchResponse(msg,command)
+    
+        urban_dictionary.fetchResponse(msg)
 
     }
     else if(msg.content=="!wordoftheday"){
