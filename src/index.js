@@ -2,14 +2,23 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const { MongoClient } = require("mongodb");
 const axios = require('axios');
+const path = require('path');
 
 
 const opgg = require('./modules/opgg/index.js')
 const urban_dictionary = require('./modules/urban_dictionary/index.js')
 
+/* require('dotenv').config();
+ */
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
- 
-require('dotenv').config();
+
+if (process.env['CLUSTER']===undefined){
+
+  console.error("Connection string for Database doesnt exist")
+  process.exit()
+}
+
 
 const clientDB = new MongoClient(process.env['CLUSTER']);
 const database = clientDB.db('B-BakaBot');
@@ -28,7 +37,7 @@ var lol_roles;
 async function getChampions() {
 const data = await (axios.get("http://ddragon.leagueoflegends.com/cdn/13.3.1/data/en_US/champion.json"));
 
-    
+
     fs.writeFileSync("./data/lol_champions.json", JSON.stringify(data.data.data), function(err) {
         if (err) {
             console.log(err);
@@ -36,19 +45,19 @@ const data = await (axios.get("http://ddragon.leagueoflegends.com/cdn/13.3.1/dat
     });
 
     lol_champions=require("./data/lol_champions.json");
-    
+
 
 }
 const client = new Discord.Client({
-    
+
     intents: [
-        
+
         Discord.Intents.FLAGS.GUILDS,
         Discord.Intents.FLAGS.GUILD_MESSAGES
-        
+
     ]
-    
-    
+
+
 });
 
 
@@ -60,28 +69,28 @@ const client = new Discord.Client({
 
 
 client.on("ready", () => {
-    
+
     client.user.setActivity('!help', { type: 'COMPETING' });
     console.log("B-Baka Bot started! :)");
-   
-    
+
+
 })
 
 
 client.on("messageCreate",msg => {
-    
+
     //* FORMATO = https://euw.op.gg/champions/jhin/top/build
-    
-    
+
+
     if(msg.content=="!bloodtrail"){
-        
+
         msg.reply({files: [{ attachment: "https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/bloodtrail.png" }] });
-        
+
     }
-    
+
     else if(msg.content.startsWith("!runes")){
-        
-    
+
+
 
         //getChampions().then( d => opgg.queryOpgg(msg,d,lol_roles) )
 
@@ -91,7 +100,7 @@ client.on("messageCreate",msg => {
 
     }
     else if(msg.content.startsWith("!opgg")){
-        
+
         let command = msg.content.split(" ");
         let url_profile = "https://euw.op.gg/summoners/euw/";
 
@@ -113,7 +122,7 @@ client.on("messageCreate",msg => {
 
     }
     else if(msg.content=="!help"){
-        
+
         let helpEmbeded = new Discord.MessageEmbed()
             .setTitle(" *COMMANDS *")
             .setThumbnail("https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/help_logo.png")
@@ -129,14 +138,14 @@ client.on("messageCreate",msg => {
             .addField("!bye ","\u200B")
             .addField("\u200B","\u200B")
             .setFooter({ text: 'B-Baka Bot by Ye4h', iconURL: "https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/baka_bot_profile_img.jpg" })
-    
-    
+
+
             msg.reply({ embeds : [helpEmbeded] });
-        
+
     }
     else if(msg.content=="!coinflip"){
 
-        
+
 
        let coinflip;
 
@@ -164,23 +173,23 @@ client.on("messageCreate",msg => {
 
     }
     //! { TEST ONLY }
-    else if(msg.content=="!p"){ 
+    else if(msg.content=="!p"){
 
-       
-    
+
+
 
 
 
     }
     else if(msg.content.startsWith("!definition")){
 
-    
+
         urban_dictionary.fetchResponse(msg)
 
     }
     else if(msg.content=="!wordoftheday"){
 
-    
+
 
 
         urban_dictionary.fetchResponse(msg);
@@ -189,22 +198,22 @@ client.on("messageCreate",msg => {
 
     }
 
-    else if(msg.content=="!bye"){ 
+    else if(msg.content=="!bye"){
 
         msg.reply("Bye Bye 👋👋")
         console.log("B-Baka Bot stopped! :(");
         process.exit();
-       
+
 
     }
-    
-    
-    
+
+
+
 })
 
 
 function run(){
-    
+
     client.login(process.env['TOKEN'])
     getChampions()
 
