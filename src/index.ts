@@ -1,6 +1,6 @@
 import { queryOpgg, querySummonerName } from './modules/opgg/index'
-/* import { fetchResponse } from './modules/urbanDictionary'
- */ import Discord, { Message } from 'discord.js'
+import { queryWordDefinition } from './modules/urbanDictionary'
+import Discord, { Message } from 'discord.js'
 
 import { MongoClient } from 'mongodb'
 import path from 'path'
@@ -105,9 +105,9 @@ client.on('messageCreate', (msg: Message) => {
     //! { TEST ONLY }
     console.log('PRUEBA')
   } else if (msg.content.startsWith('!definition')) {
-    // fetchResponse(msg)
+    queryWordDefinition(msg)
   } else if (msg.content === '!wordoftheday') {
-    // fetchResponse(msg)
+    queryWordDefinition(msg)
   } else if (msg.content === '!bye') {
     msg.reply('Bye Bye 👋👋')
     console.log('B-Baka Bot stopped! :(')
