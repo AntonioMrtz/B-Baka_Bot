@@ -92,7 +92,6 @@ export const queryOpgg = async (msg: Message) => {
       .then((resChampionInfoJson: any) => {
         const skins = resChampionInfoJson.data[championUpperCaseFirst].skins
 
-
         const runesEmbeded = new Discord.MessageEmbed()
           .setTitle('Runas ' + championUpperCaseFirst + ' en ' + role)
           .setColor('FUCHSIA')
