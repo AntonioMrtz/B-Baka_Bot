@@ -1,5 +1,5 @@
 # B-Baka Bot
-[B-Baka Bot](https://antoniomrtz.github.io/B-Baka_Bot_Web/) for Discord is a Multi-Purpose Bot designed in JavaScript
+[B-Baka Bot](https://antoniomrtz.github.io/B-Baka-Bot-Web-Boostrap/) for Discord is a Multi-Purpose Bot designed in JavaScript
 
 <img src=https://raw.githubusercontent.com/AntonioMrtz/B-Baka_Bot/main/img/hotaru_gif.gif width=200px>
 
