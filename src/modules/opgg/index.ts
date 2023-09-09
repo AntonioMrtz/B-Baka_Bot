@@ -62,18 +62,10 @@ export const queryOpgg = async (msg: Message) => {
 
   if (
     championsData &&
-    championsDataSingleton.getRoles().includes(role) &&
+    championsDataSingleton.getRoles()[role] &&
     championsData.data[championUpperCaseFirst]
   ) {
-    // check if the rol and champion exists
-
-    if (role === 'supp') {
-      role = 'support'
-    } else if (role === 'jg' || role === 'jgl') {
-      role = 'jungle'
-    }
-
-    url += champion + '/' + role + '/' + 'build'
+    url += champion + '/' + championsDataSingleton.getRoles()[role] + '/' + 'build'
 
     fetch(
       'https://ddragon.leagueoflegends.com/cdn/13.3.1/data/en_US/champion/' +

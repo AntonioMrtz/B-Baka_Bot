@@ -4,16 +4,16 @@ export class ChampionData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private championsData: any = null
 
-  private roles = [
-    'supp',
-    'support',
-    'adc',
-    'mid',
-    'jgl',
-    'jungle',
-    'jg',
-    'top'
-  ]
+  private roles: { [key: string]: string } = {
+    support: 'support',
+    supp: 'support',
+    adc: 'adc',
+    mid: 'mid',
+    jgl: 'jungle',
+    jg: 'jungle',
+    jungle: 'jungle',
+    top: 'top'
+  }
 
   public constructor () {
     // Asegura que solo haya una instancia de DataManager
