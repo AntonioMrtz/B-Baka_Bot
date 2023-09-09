@@ -1,7 +1,10 @@
 import { Message } from 'discord.js'
+import { ChampionData } from './ChampionData'
 
 const Discord = require('discord.js')
 const axios = require('axios')
+
+const championsDataSingleton = new ChampionData()
 
 const lolChampionsRoles = {
   roles: ['supp', 'support', 'adc', 'mid', 'jgl', 'jungle', 'jg', 'top']
@@ -61,16 +64,12 @@ export const queryOpgg = async (msg: Message) => {
       command[2].slice(1)
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const lolChampionsData: any = await fetch(
-    'https://ddragon.leagueoflegends.com/cdn/13.17.1/data/en_US/champion.json'
-  )
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const lolChampionsDataJson: any = await lolChampionsData.json()
+  const championsData = await championsDataSingleton.getChampionsData()
 
   if (
+    championsData &&
     lolChampionsRoles.roles.includes(role) &&
-    lolChampionsDataJson.data[championUpperCaseFirst]
+    championsData.data[championUpperCaseFirst]
   ) {
     // check if the rol and champion exists
 

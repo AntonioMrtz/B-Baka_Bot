@@ -21,8 +21,6 @@
 
 !bloodtrail
 
-!rampas
-
 !bye
 ```
 
