@@ -117,8 +117,6 @@ client.on('messageCreate', (msg: Message) => {
 
 function run () {
   client.login(process.env.TOKEN)
-  /*     getChampions()
-   */
 }
 
 run()

@@ -6,10 +6,6 @@ const axios = require('axios')
 
 const championsDataSingleton = new ChampionData()
 
-const lolChampionsRoles = {
-  roles: ['supp', 'support', 'adc', 'mid', 'jgl', 'jungle', 'jg', 'top']
-}
-
 export const queryOpgg = async (msg: Message) => {
   let flagTwoWordsChamp = 0
   let voidChamp = 0
@@ -28,13 +24,11 @@ export const queryOpgg = async (msg: Message) => {
     return
   } else if (command.length === 4) {
     // 2 word champs
-
     flagTwoWordsChamp = 1
     champion = command[1].toLocaleLowerCase() + command[2].toLocaleLowerCase()
     role = command[3].toLocaleLowerCase()
   } else if (command[1].search("'") !== -1) {
     // has '
-
     voidChamp = 1
     champion = command[1].toLocaleLowerCase()
     role = command[2].toLocaleLowerCase()
@@ -68,7 +62,7 @@ export const queryOpgg = async (msg: Message) => {
 
   if (
     championsData &&
-    lolChampionsRoles.roles.includes(role) &&
+    championsDataSingleton.getRoles().includes(role) &&
     championsData.data[championUpperCaseFirst]
   ) {
     // check if the rol and champion exists
@@ -123,10 +117,6 @@ export const querySummonerName = (
   profileUrl: string,
   command: string[]
 ) => {
-  // antes
-  // </div><img src="https://opgg-static.akamaized.net/images/profile_icons/profileIcon4884.jpg?image=q_auto&amp;image=q_auto,f_png,w_auto&amp;v=1650634188962" alt="profile image"
-
-  // ahora
   // <div class="profile-icon"><img src="https://opgg-static.akamaized.net/images/profile_icons/profileIcon743.jpg?image=q_auto&amp;image=q_auto,f_webp,w_auto&amp;v=1656664295380" alt="profile image"><div><span class="level">284</span></div></div>
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
