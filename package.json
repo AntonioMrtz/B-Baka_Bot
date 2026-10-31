@@ -23,7 +23,7 @@
   "dependencies": {
     "@types/node": "^20.6.0",
     "axios": "^1.18.0",
-    "discord.js": "^13.6.0",
+    "discord.js": "^13.17.1",
     "dotenv": "^16.0.0",
     "express": "^4.22.2",
     "jest": "^29.4.3",
